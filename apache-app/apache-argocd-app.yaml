@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apache-web
+  namespace: argocd
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  project: default
+  source:
+    repoURL: https://github.com/chinabudhi123/argocd-pipeline.git
+    targetRevision: HEAD
+    path: apache-app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
